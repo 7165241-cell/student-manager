@@ -31,15 +31,13 @@ def find_student(students, name):
 def class_average(students, class_name):
     total=0
     sumi=0
-    sum_class=0
     for i in students:
         if i["class"]==class_name:
             sumi+=int (i["grade"])
             total+=1
-            return sum_class
-        if sumi==0:
-            return 0
-        return sumi/total
+    if sumi==0:
+        return 0
+    return sumi/total
 
 ###6
 def top_student(students):
