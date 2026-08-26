@@ -43,18 +43,21 @@ def class_average(students, class_name):
 
 ###6
 def top_student(students):
-    sumi=0
+    top_grade = 0
+    top_name = None
     for i in students:
-        if i["grade"]>sumi:
-            sumi=int (i["grade"])
-        if sumi ==0:
-            return None
-        return students["name"]
+        grade=int (i["grade"])
+        if grade>top_grade:
+            top_grade = grade
+            top_name = i ["name"]
+    return top_name
+        # if top_grade ==0:
+    #         return None
+    # return students["name"]
 
 ###7
 def print_all(students):
-    for i in students:
-        print (i["name"])
+    print (students)
 
 
 def main():
@@ -87,20 +90,17 @@ def main():
             print(class_average(students, c))
 
         elif choice == "5":
-            top_student(students)
-            save_students(students)
+            print (top_student(students))
+            
+            
         elif choice == "6":
-            print_all(students)
-            save_students(students)
+            save_students(file_name,students)
+            print("Saved successfully")
+            break
+            
         else:
             print("Invalid selection, try again.")
-
-        #else:
-           # if choice >"6" or choice < "0":
-            #    break
-        
-# if __name__ =="__main__":
-#      main()  
+        print("----------------------------------")
 
 main()
         
