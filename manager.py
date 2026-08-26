@@ -19,34 +19,33 @@ def save_students(filename, students):
 # save_students("students_test.csv", my_students)
 ###3
 def add_student(students, name, grade, class_name):
-    addi_student={"name":name,"grade":grade,"class_name":class_name}
+    addi_student={"name":name,"grade":grade,"class":class_name}
     students.append(addi_student)
 ###4
 def find_student(students, name):
     for row in students:
         if row["name"]==name:
             return row
-        else:
-           return None
+    return None
 ###5
 def class_average(students, class_name):
     total=0
     sumi=0
     sum_class=0
     for i in students:
-        if students["class"]==class_name:
-            total+=1
+        if i["class"]==class_name:
             sumi+=int (i["grade"])
-            sum_class=sumi//total
+            total+=1
             return sum_class
-        else:
+        if sumi==0:
             return 0
+        return sumi/total
 
 ###6
 def top_student(students):
     sumi=0
     for i in students:
-        if students["grade"]>sumi:
+        if i["grade"]>sumi:
             sumi=int (i["grade"])
         if sumi ==0:
             return None
@@ -59,7 +58,7 @@ def print_all(students):
 
 
 def main():
-    file_name =r"C:\Users\נעמה כהן\Desktop\python_projects\efraim-python\Working with files\students.csv"
+    file_name = r"C:\Users\נעמה כהן\Desktop\python_projects\efraim-python\Working with files\students.csv"                   
     students=load_students(file_name)
     while True:
         print("1 :Show all")
@@ -73,13 +72,20 @@ def main():
         if choice=="1":
             print_all(students)
         elif choice == "2":
-            add_student(students)
-            save_students(students)
+            name = input("Enter name: ")
+            grade = input("Enter grade: ")
+            class_name = input("Enter class: ")
+            add_student(students, name, grade, class_name)
+            save_students(file_name, students)
+
         elif choice == "3":
-            find_student(students)
+            name = input("Enter name to find: ")
+            print(find_student(students, name))
+
         elif choice == "4":
-            class_average(students)
-            save_students(students)
+            c = input("Enter class: ")
+            print(class_average(students, c))
+
         elif choice == "5":
             top_student(students)
             save_students(students)
@@ -87,8 +93,11 @@ def main():
             print_all(students)
             save_students(students)
         else:
-            if choice >"6" or choice < "0":
-                break
+            print("Invalid selection, try again.")
+
+        #else:
+           # if choice >"6" or choice < "0":
+            #    break
         
 # if __name__ =="__main__":
 #      main()  
