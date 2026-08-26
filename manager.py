@@ -51,9 +51,7 @@ def top_student(students):
             top_grade = grade
             top_name = i ["name"]
     return top_name
-        # if top_grade ==0:
-    #         return None
-    # return students["name"]
+    
 
 ###7
 def print_all(students):
